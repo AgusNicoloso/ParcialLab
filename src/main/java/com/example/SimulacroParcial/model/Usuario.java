@@ -18,7 +18,7 @@ public class Usuario {
     private Integer id;
     private String nombre;
     private String apellido;
-    //BROWSER CREAR
+    private String browser;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Publicaciones> publicacionesList;

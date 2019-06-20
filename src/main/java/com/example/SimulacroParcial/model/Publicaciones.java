@@ -1,10 +1,12 @@
 package com.example.SimulacroParcial.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.tomcat.jni.Local;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -26,6 +28,7 @@ public class Publicaciones {
     private String titulo;
     private String descripcion;
     private String foto;
+    @JsonFormat(pattern = "dd-MMM-yyyy")
     private LocalDateTime fechapublicacion;
     private Integer liked;
     @ManyToOne(fetch = FetchType.LAZY)
@@ -35,7 +38,7 @@ public class Publicaciones {
     @PrePersist
     public void setearHora(){
         if(this.fechapublicacion==null){
-            this.fechapublicacion = LocalDateTime.now().plusHours(3).plusMinutes(20);
+            this.setFechapublicacion(LocalDateTime.now());
         }
 
     }

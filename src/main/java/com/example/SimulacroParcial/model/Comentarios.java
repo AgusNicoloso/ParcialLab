@@ -1,9 +1,11 @@
 package com.example.SimulacroParcial.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -18,6 +20,7 @@ public class Comentarios {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String Descripcion;
+    @JsonFormat(pattern = "dd-MMM-yyyy")
     private LocalDateTime fecha;
     private String owner;
     @ManyToOne(fetch = FetchType.LAZY)
@@ -27,7 +30,7 @@ public class Comentarios {
     @PrePersist
     public void setearHora(){
         if(this.fecha==null){
-            this.fecha = LocalDateTime.now().plusHours(3).plusMinutes(20);
+            this.setFecha(LocalDateTime.now());
         }
 
     }
