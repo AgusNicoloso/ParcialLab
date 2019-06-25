@@ -1,6 +1,7 @@
 package com.example.SimulacroParcial.controller;
 
 
+import com.example.SimulacroParcial.model.PublicacionesxUsuario;
 import com.example.SimulacroParcial.model.Usuario;
 import com.example.SimulacroParcial.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,4 +54,8 @@ public class UsuarioController {
         usuarioRepository.save(u);
     }
 
+    @GetMapping("/getcant")
+    public List<PublicacionesxUsuario> getCantComentariosxUsuarios(){
+        return usuarioRepository.getCantPublixUsuario();
+    }
 }
